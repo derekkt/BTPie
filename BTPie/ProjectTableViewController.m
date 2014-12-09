@@ -32,6 +32,11 @@
 @synthesize noProjectsLabel;
 @synthesize pie;
 
+- (IBAction)saveButtonListener:(id)sender {
+    
+    //save method
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -110,10 +115,6 @@
         
         
     }
-}
-- (IBAction)saveButtonListener:(id)sender {
-    
-    //save method
 }
 
 
