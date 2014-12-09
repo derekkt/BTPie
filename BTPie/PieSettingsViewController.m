@@ -60,7 +60,7 @@
         
     }
     if(indexPath.row == [managerPie count]){
-        cell.textLabel.text = @"Add a new member to the group...";
+        cell.textLabel.text = @"Add a new pie slice to the team...";
         
     }else{
         cell.textLabel.text = [[managerPie objectAtIndex:indexPath.row]objectForKey:@"pc_name"];

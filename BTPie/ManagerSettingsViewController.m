@@ -147,7 +147,25 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [toast dismissWithClickedButtonIndex:0 animated:YES];
             });
+        
+        }else if(![[person objectForKey:@"team_id"] isEqual:[NSNull null]]){
+            int duration = 1;
+            NSString *message = @"User is already in a group. Try again.";
+            
+            UIAlertView *toast = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:message
+                                                           delegate:nil
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:nil, nil];
+            [toast show];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [toast dismissWithClickedButtonIndex:0 animated:YES];
+            });
+
+        
         }else{
+            NSLog(@"%@",[person objectForKey:@"team_id"]);
+            
             NSArray* managerPie = [ServiceConnector getUserPie:[manager objectForKey:@"ua_username"]];
             NSMutableArray* newUserPie = [ServiceConnector getUserPie:[person objectForKey:@"ua_username"]];
             

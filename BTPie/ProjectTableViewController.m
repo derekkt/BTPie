@@ -96,13 +96,21 @@
             
             saveButton.hidden = YES;
             managerSettings.hidden = NO;
-            pie = [ServiceConnector getTeamPie: [person objectForKey:@"team_id"]];
+            [ServiceConnector getTeamPie: [person objectForKey:@"team_id"]]; //this line gets the manager's pie. do what you need with it.
+            
+            //do setup because user is manager.
+            
+            
         }else{
             //user is not manager
             
             managerSettings.hidden = YES;
             saveButton.hidden = NO;
-            pie = [ServiceConnector getUserPie: [person objectForKey:@"ua_username"]];
+            pie = [ServiceConnector getUserPie: [person objectForKey:@"ua_username"]]; // thisline gets the user's pie. he is a member.
+            
+            //do setup because user is member
+            
+            
         }
     }else{
         //user has no project
