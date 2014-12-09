@@ -82,7 +82,7 @@
         
     }else{
         //edit existing pie slice
-        [[managerPie objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row] forKey:@"index"];
+        
         pie = [managerPie objectAtIndex:indexPath.row];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter new name for the existing pie slice." message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil] ;
         alertView.tag = 2;
@@ -93,6 +93,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     UITextField * alertTextField = [alertView textFieldAtIndex:0];
+    
     if(alertView.tag == 1){
         NSMutableDictionary* newPie = [[NSMutableDictionary alloc]init];
         [newPie setObject:[NSString stringWithFormat:@"%lu",(unsigned long)[managerPie count]] forKey:@"pc_order"];
@@ -101,14 +102,34 @@
         
         
         [ServiceConnector createPie:[manager objectForKey:@"ua_username"] :newPie];
-        
-        
+        NSArray* keys = [[ServiceConnector getTeamPie:[manager objectForKey:@"team_id"]] allKeys];
+        for(int i = 0; i < [keys count]; i++){
+            if(![[keys objectAtIndex:i] isEqual:[manager objectForKey:@"ua_username"]])
+                [ServiceConnector createPie:[keys objectAtIndex:i] :newPie];
+        }
         managerPie = [ServiceConnector getUserPie:[manager objectForKey:@"ua_username"]];
     }else{
         [pie setObject:alertTextField.text forKey:@"pc_name"];
         [ServiceConnector updateUserPie:pie];
+        NSArray* keys = [[ServiceConnector getTeamPie:[manager objectForKey:@"team_id"]] allKeys];
+        for(int i = 0; i < [keys count]; i++){
+            NSMutableArray* tempPie = [ServiceConnector getUserPie:[keys objectAtIndex:i]];
+            int index = [[pie objectForKey:@"pc_order"] intValue];
+            
+            NSMutableDictionary* tempPieSlice = [tempPie objectAtIndex: index];
+            [tempPieSlice setObject:alertTextField.text forKey:@"pc_name"];
+            [ServiceConnector updateUserPie:tempPieSlice];
+            NSLog(@"%@", tempPieSlice);
+            
+        }
+        
+        
+        
         
     }
+    
+    
+    
     [self.pieTableView reloadData];
     
 }
