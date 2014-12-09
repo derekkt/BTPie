@@ -15,6 +15,13 @@
 		AE9543D51A319E3200AE2FE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE9543D41A319E3200AE2FE1 /* Images.xcassets */; };
 		AE9543D81A319E3200AE2FE1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE9543D61A319E3200AE2FE1 /* LaunchScreen.xib */; };
 		AE9543E41A319E3200AE2FE1 /* BTPieTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9543E31A319E3200AE2FE1 /* BTPieTests.m */; };
+		AEBEAFFF1A3422A000609061 /* ManagerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBEAFFE1A3422A000609061 /* ManagerSettingsViewController.m */; };
+		AEBEB0081A355DE400609061 /* PieSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBEB0071A355DE400609061 /* PieSettingsViewController.m */; };
+		AEDDB7F31A3680CB004678BA /* ManagerPieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDDB7F21A3680CB004678BA /* ManagerPieViewController.m */; };
+		AEFE8B971A31A09500751BA6 /* ServiceConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFE8B961A31A09500751BA6 /* ServiceConnector.m */; };
+		AEFE8B9E1A32ADC500751BA6 /* NewPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFE8B9D1A32ADC500751BA6 /* NewPersonViewController.m */; };
+		AEFE8BA11A32CA2300751BA6 /* ProjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFE8BA01A32CA2300751BA6 /* ProjectTableViewController.m */; };
+		AEFE8BA41A32E62A00751BA6 /* UserSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFE8BA31A32E62A00751BA6 /* UserSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +49,20 @@
 		AE9543DD1A319E3200AE2FE1 /* BTPieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTPieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE9543E21A319E3200AE2FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE9543E31A319E3200AE2FE1 /* BTPieTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTPieTests.m; sourceTree = "<group>"; };
+		AEBEAFFD1A3422A000609061 /* ManagerSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerSettingsViewController.h; sourceTree = "<group>"; };
+		AEBEAFFE1A3422A000609061 /* ManagerSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerSettingsViewController.m; sourceTree = "<group>"; };
+		AEBEB0061A355DE400609061 /* PieSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieSettingsViewController.h; sourceTree = "<group>"; };
+		AEBEB0071A355DE400609061 /* PieSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieSettingsViewController.m; sourceTree = "<group>"; };
+		AEDDB7F11A3680CB004678BA /* ManagerPieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerPieViewController.h; sourceTree = "<group>"; };
+		AEDDB7F21A3680CB004678BA /* ManagerPieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerPieViewController.m; sourceTree = "<group>"; };
+		AEFE8B951A31A08600751BA6 /* ServiceConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceConnector.h; sourceTree = "<group>"; };
+		AEFE8B961A31A09500751BA6 /* ServiceConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceConnector.m; sourceTree = "<group>"; };
+		AEFE8B9C1A32ADC500751BA6 /* NewPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPersonViewController.h; sourceTree = "<group>"; };
+		AEFE8B9D1A32ADC500751BA6 /* NewPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPersonViewController.m; sourceTree = "<group>"; };
+		AEFE8B9F1A32CA2300751BA6 /* ProjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTableViewController.h; sourceTree = "<group>"; };
+		AEFE8BA01A32CA2300751BA6 /* ProjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTableViewController.m; sourceTree = "<group>"; };
+		AEFE8BA21A32E62A00751BA6 /* UserSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingsViewController.h; sourceTree = "<group>"; };
+		AEFE8BA31A32E62A00751BA6 /* UserSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,11 +108,25 @@
 				AE9543C91A319E3200AE2FE1 /* AppDelegate.m */,
 				AE9543CE1A319E3200AE2FE1 /* ViewController.h */,
 				AE9543CF1A319E3200AE2FE1 /* ViewController.m */,
+				AEFE8B9C1A32ADC500751BA6 /* NewPersonViewController.h */,
+				AEFE8B9D1A32ADC500751BA6 /* NewPersonViewController.m */,
 				AE9543D11A319E3200AE2FE1 /* Main.storyboard */,
 				AE9543D41A319E3200AE2FE1 /* Images.xcassets */,
 				AE9543D61A319E3200AE2FE1 /* LaunchScreen.xib */,
 				AE9543CB1A319E3200AE2FE1 /* BTPie.xcdatamodeld */,
 				AE9543C41A319E3200AE2FE1 /* Supporting Files */,
+				AEFE8B951A31A08600751BA6 /* ServiceConnector.h */,
+				AEFE8B961A31A09500751BA6 /* ServiceConnector.m */,
+				AEFE8B9F1A32CA2300751BA6 /* ProjectTableViewController.h */,
+				AEFE8BA01A32CA2300751BA6 /* ProjectTableViewController.m */,
+				AEFE8BA21A32E62A00751BA6 /* UserSettingsViewController.h */,
+				AEFE8BA31A32E62A00751BA6 /* UserSettingsViewController.m */,
+				AEBEAFFD1A3422A000609061 /* ManagerSettingsViewController.h */,
+				AEBEAFFE1A3422A000609061 /* ManagerSettingsViewController.m */,
+				AEBEB0061A355DE400609061 /* PieSettingsViewController.h */,
+				AEBEB0071A355DE400609061 /* PieSettingsViewController.m */,
+				AEDDB7F11A3680CB004678BA /* ManagerPieViewController.h */,
+				AEDDB7F21A3680CB004678BA /* ManagerPieViewController.m */,
 			);
 			path = BTPie;
 			sourceTree = "<group>";
@@ -222,10 +257,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEFE8B9E1A32ADC500751BA6 /* NewPersonViewController.m in Sources */,
+				AEFE8B971A31A09500751BA6 /* ServiceConnector.m in Sources */,
 				AE9543CA1A319E3200AE2FE1 /* AppDelegate.m in Sources */,
 				AE9543C71A319E3200AE2FE1 /* main.m in Sources */,
 				AE9543D01A319E3200AE2FE1 /* ViewController.m in Sources */,
 				AE9543CD1A319E3200AE2FE1 /* BTPie.xcdatamodeld in Sources */,
+				AEBEB0081A355DE400609061 /* PieSettingsViewController.m in Sources */,
+				AEFE8BA41A32E62A00751BA6 /* UserSettingsViewController.m in Sources */,
+				AEFE8BA11A32CA2300751BA6 /* ProjectTableViewController.m in Sources */,
+				AEBEAFFF1A3422A000609061 /* ManagerSettingsViewController.m in Sources */,
+				AEDDB7F31A3680CB004678BA /* ManagerPieViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +390,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BTPie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -358,6 +401,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BTPie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -416,6 +460,7 @@
 				AE9543E91A319E3200AE2FE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AE9543EA1A319E3200AE2FE1 /* Build configuration list for PBXNativeTarget "BTPieTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +469,7 @@
 				AE9543EC1A319E3200AE2FE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
