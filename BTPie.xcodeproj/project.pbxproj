@@ -22,6 +22,8 @@
 		AEFE8B9E1A32ADC500751BA6 /* NewPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFE8B9D1A32ADC500751BA6 /* NewPersonViewController.m */; };
 		AEFE8BA11A32CA2300751BA6 /* ProjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFE8BA01A32CA2300751BA6 /* ProjectTableViewController.m */; };
 		AEFE8BA41A32E62A00751BA6 /* UserSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFE8BA31A32E62A00751BA6 /* UserSettingsViewController.m */; };
+		D87100CF1A377DF100F6375D /* PSRPieView.m in Sources */ = {isa = PBXBuildFile; fileRef = D87100CC1A377DF100F6375D /* PSRPieView.m */; };
+		D87100D01A377DF100F6375D /* PSRSlice.m in Sources */ = {isa = PBXBuildFile; fileRef = D87100CE1A377DF100F6375D /* PSRSlice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,10 @@
 		AEFE8BA01A32CA2300751BA6 /* ProjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTableViewController.m; sourceTree = "<group>"; };
 		AEFE8BA21A32E62A00751BA6 /* UserSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingsViewController.h; sourceTree = "<group>"; };
 		AEFE8BA31A32E62A00751BA6 /* UserSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingsViewController.m; sourceTree = "<group>"; };
+		D87100CB1A377DF100F6375D /* PSRPieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSRPieView.h; sourceTree = "<group>"; };
+		D87100CC1A377DF100F6375D /* PSRPieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSRPieView.m; sourceTree = "<group>"; };
+		D87100CD1A377DF100F6375D /* PSRSlice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSRSlice.h; sourceTree = "<group>"; };
+		D87100CE1A377DF100F6375D /* PSRSlice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSRSlice.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,10 @@
 				AEBEB0071A355DE400609061 /* PieSettingsViewController.m */,
 				AEDDB7F11A3680CB004678BA /* ManagerPieViewController.h */,
 				AEDDB7F21A3680CB004678BA /* ManagerPieViewController.m */,
+				D87100CB1A377DF100F6375D /* PSRPieView.h */,
+				D87100CC1A377DF100F6375D /* PSRPieView.m */,
+				D87100CD1A377DF100F6375D /* PSRSlice.h */,
+				D87100CE1A377DF100F6375D /* PSRSlice.m */,
 			);
 			path = BTPie;
 			sourceTree = "<group>";
@@ -258,9 +268,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEFE8B9E1A32ADC500751BA6 /* NewPersonViewController.m in Sources */,
+				D87100CF1A377DF100F6375D /* PSRPieView.m in Sources */,
 				AEFE8B971A31A09500751BA6 /* ServiceConnector.m in Sources */,
 				AE9543CA1A319E3200AE2FE1 /* AppDelegate.m in Sources */,
 				AE9543C71A319E3200AE2FE1 /* main.m in Sources */,
+				D87100D01A377DF100F6375D /* PSRSlice.m in Sources */,
 				AE9543D01A319E3200AE2FE1 /* ViewController.m in Sources */,
 				AE9543CD1A319E3200AE2FE1 /* BTPie.xcdatamodeld in Sources */,
 				AEBEB0081A355DE400609061 /* PieSettingsViewController.m in Sources */,

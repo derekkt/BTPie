@@ -11,44 +11,82 @@
 #import "ServiceConnector.h"
 #import "UserSettingsViewController.h"
 #import "ManagerSettingsViewController.h"
+#import "PSRPieView.h"
+
 @interface ProjectTableViewController ()
 
 @property (strong, nonatomic) IBOutlet UIButton *projectStartButton;
-
 @property (strong, nonatomic) IBOutlet UILabel *noProjectsLabel;
 
-@property (strong, nonatomic) NSArray *test;
-@property (strong, nonatomic) IBOutlet UIButton *saveButton;
-@property (strong, nonatomic) IBOutlet UIButton *managerSettings;
+@property (nonatomic) UIButton *projectAddButton;
+@property (nonatomic) UIButton *userSettingsButton;
+@property (nonatomic) UIButton *saveButton;
+@property (nonatomic) UIButton *managerSettings;
+@property (nonatomic) UIToolbar *topToolbar;
+@property (nonatomic) UIToolbar *bottomToolbar;
+@property (nonatomic) NSMutableArray *buttonList;
 
 @end
 
 @implementation ProjectTableViewController
-@synthesize managerSettings;
-@synthesize test;
 @synthesize person;
-@synthesize projectStartButton;
-@synthesize saveButton;
 @synthesize noProjectsLabel;
 @synthesize pie;
 
-- (IBAction)saveButtonListener:(id)sender {
-    
-    //save method
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //   NSLog(@"%@",[[group getPerson:selectedRowIndex] getName]);
-    // Do any additional setup after loading the view from its nib.
+    CGFloat frameHeight = self.view.frame.size.height;
+    CGFloat frameWidth = self.view.frame.size.width;
+    _buttonList = [[NSMutableArray alloc] init];
+    UIColor *textColor = [UIColor colorWithRed:0.255 green:0.663 blue:0.949 alpha:1];
     
+    // Adding toolbar.
+    _topToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 20, frameWidth, 44)];
+    [_topToolbar setBackgroundColor:[UIColor colorWithRed:0.941 green:0.945 blue:0.91 alpha:0.8]];
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    [items addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(backListener:)]];
+    [items addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
+    [_topToolbar setItems:items animated:NO];
+    [_buttonList addObject:_topToolbar];
+    
+    self.managerSettings = [[UIButton alloc] initWithFrame:CGRectMake(0, frameHeight - 50, frameWidth, 15)];
+    [self.managerSettings setTitle:@"Manager Settings" forState:UIControlStateNormal];
+    [self.managerSettings setTitleColor:[UIColor colorWithRed:0.255 green:0.663 blue:0.949 alpha:1] forState:UIControlStateNormal];
+    [self.managerSettings addTarget:self action:@selector(managerSettingsSegue:) forControlEvents:UIControlEventTouchUpInside];
+    [_buttonList addObject:self.managerSettings];
+    
+    _saveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, frameHeight - 20, frameWidth, 15)];
+    [_saveButton setTitle:@"Save All Changes" forState:UIControlStateNormal];
+    [_saveButton setTitleColor:textColor forState:UIControlStateNormal];
+    [_saveButton addTarget:self action:@selector(saveButtonListener:) forControlEvents:UIControlEventTouchUpInside];
+    [_buttonList addObject:_saveButton];
+    
+    _userSettingsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, frameHeight - 110, frameWidth, 15)];
+    [_userSettingsButton setTitle:@"User Settings" forState:UIControlStateNormal];
+    [_userSettingsButton setTitleColor:textColor forState:UIControlStateNormal];
+    [_userSettingsButton addTarget:self action:@selector(userSettings:) forControlEvents:UIControlEventTouchUpInside];
+    [_buttonList addObject:_userSettingsButton];
+    
+    _projectAddButton = [[UIButton alloc] initWithFrame:CGRectMake(0, frameHeight - 80, frameWidth, 15)];
+    [_projectAddButton setTitle:@"Start a Project" forState:UIControlStateNormal];
+    [_projectAddButton setTitleColor:textColor forState:UIControlStateNormal];
+    [_projectAddButton addTarget:self action:@selector(projectStartListener:) forControlEvents:UIControlEventTouchUpInside];
+    [_buttonList addObject:_projectAddButton];
+    
+    // Load Pie
     [self loadViewItems];
 }
+
+#pragma mark - Button Handlers
+
+
 - (IBAction)backListener:(id)sender {
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)saveButtonListener:(id)sender {
+    //save method
+}
 
 - (IBAction)projectStartListener:(id)sender {
     
@@ -58,6 +96,17 @@
     alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
     [alertView show];
     
+}
+
+- (IBAction)managerSettingsSegue:(id)sender
+{
+    [self performSegueWithIdentifier:@"managerSettingsSegue" sender:nil];
+}
+
+- (IBAction)userSettings:(id)sender
+{
+    NSLog(@"hello");
+    [self performSegueWithIdentifier:@"userSettingsSegue" sender:nil];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -83,45 +132,54 @@
     }
 }
 
+#pragma mark - Loading Pie
+
 -(void) loadViewItems{
     if((![[person objectForKey:@"team_id"] isEqual:[NSNull null]])){
         //user has a project
         
         NSLog(@"%@", person);
-        projectStartButton.hidden = YES;
+        _projectStartButton.hidden = YES;
         noProjectsLabel.hidden = YES;
         
         if([[person objectForKey:@"team_leader_id"] isEqual:[person objectForKey:@"user_account_id"]]){
             //user is manager
             
-            saveButton.hidden = YES;
-            managerSettings.hidden = NO;
+            _saveButton.hidden = YES;
+            self.managerSettings.hidden = NO;
             [ServiceConnector getTeamPie: [person objectForKey:@"team_id"]]; //this line gets the manager's pie. do what you need with it.
             
             //do setup because user is manager.
-            
+            self.view = [[PSRPieView alloc] initWithFrame:CGRectZero];
+            self.view.backgroundColor = [UIColor whiteColor];
             
         }else{
-            //user is not manager
+            //user is a member
             
-            managerSettings.hidden = YES;
-            saveButton.hidden = NO;
+            self.managerSettings.hidden = YES;
+            _saveButton.hidden = NO;
             pie = [ServiceConnector getUserPie: [person objectForKey:@"ua_username"]]; // thisline gets the user's pie. he is a member.
-            
-            //do setup because user is member
-            
+            NSLog(@"hello error");
+            if (pie){
+                PSRPieView *userPieView = [[PSRPieView alloc] initForUser:CGRectZero skillList:pie];
+                //do setup because user is member
+                self.view = userPieView;
+                self.view.backgroundColor = [UIColor whiteColor];
+            }
             
         }
+        
+        for (id i in _buttonList){
+            [self.view addSubview:i];
+        }
+        
     }else{
         //user has no project
         
         NSLog(@"team_id: %@", [person objectForKey:@"team_id"]);
-        managerSettings.hidden = YES;
         noProjectsLabel.hidden = NO;
-        projectStartButton.hidden = NO;
-        saveButton.hidden = YES;
-        
-        
+        _projectStartButton.hidden = NO;
+    
     }
 }
 

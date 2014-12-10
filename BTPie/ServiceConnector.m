@@ -71,7 +71,6 @@
     NSError *error;
     id userProfile = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
-    
     if(userProfile != nil){
         NSLog(@"test: %@", userProfile);
         return userProfile;

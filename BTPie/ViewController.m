@@ -24,12 +24,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    
-    
-    
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,7 +62,7 @@
             [toast dismissWithClickedButtonIndex:0 animated:YES];
         });
     }else{
-        person = [ServiceConnector getUser: userName];
+        person = [ServiceConnector getUser:userName];
         if(person != nil){
             
             if([[person objectForKey:@"ua_password"] isEqualToString:pword]){
