@@ -26,6 +26,8 @@
 @property (nonatomic) UIToolbar *bottomToolbar;
 @property (nonatomic) NSMutableArray *buttonList;
 
+@property (nonatomic) PSRPieView *userPieView;
+
 @end
 
 @implementation ProjectTableViewController
@@ -85,7 +87,10 @@
 }
 
 - (IBAction)saveButtonListener:(id)sender {
-    //save method
+    // Use the ["view" pieSlices] method to get an array of slices.
+    // slices.skillName
+    // slices.skillLevel
+    
 }
 
 - (IBAction)projectStartListener:(id)sender {
@@ -105,7 +110,6 @@
 
 - (IBAction)userSettings:(id)sender
 {
-    NSLog(@"hello");
     [self performSegueWithIdentifier:@"userSettingsSegue" sender:nil];
 }
 
@@ -138,7 +142,8 @@
     if((![[person objectForKey:@"team_id"] isEqual:[NSNull null]])){
         //user has a project
         
-        NSLog(@"%@", person);
+//        NSLog(@"%@", person);
+        
         _projectStartButton.hidden = YES;
         noProjectsLabel.hidden = YES;
         
@@ -147,25 +152,24 @@
             
             _saveButton.hidden = YES;
             self.managerSettings.hidden = NO;
-            [ServiceConnector getTeamPie: [person objectForKey:@"team_id"]]; //this line gets the manager's pie. do what you need with it.
+            NSDictionary *userProfile = [ServiceConnector getTeamPie: [person objectForKey:@"team_id"]];
+            NSArray *members = [userProfile allValues];
             
             //do setup because user is manager.
-            self.view = [[PSRPieView alloc] initWithFrame:CGRectZero];
+            self.view = [[PSRPieView alloc] initForManager:CGRectZero memberList:members];
             self.view.backgroundColor = [UIColor whiteColor];
             
         }else{
-            //user is a member
+            // Member
             
             self.managerSettings.hidden = YES;
             _saveButton.hidden = NO;
             pie = [ServiceConnector getUserPie: [person objectForKey:@"ua_username"]]; // thisline gets the user's pie. he is a member.
-            NSLog(@"hello error");
-            if (pie){
-                PSRPieView *userPieView = [[PSRPieView alloc] initForUser:CGRectZero skillList:pie];
-                //do setup because user is member
-                self.view = userPieView;
-                self.view.backgroundColor = [UIColor whiteColor];
-            }
+            
+            _userPieView = [[PSRPieView alloc] initForUser:CGRectZero skillList:pie];
+            //do setup because user is member
+            self.view = _userPieView;
+            self.view.backgroundColor = [UIColor whiteColor];
             
         }
         

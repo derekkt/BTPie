@@ -25,6 +25,7 @@
 @property (nonatomic) NSUInteger numberOfSections;
 
 @property (nonatomic) UILabel *skillLabel;
+@property (nonatomic) BOOL isManager;
 
 @end
 
@@ -43,8 +44,7 @@
         self.finishedFills = [[NSMutableArray alloc] init];
         self.pieSlices = [[NSMutableArray alloc] init];
         
-        self.skillLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width, 100, self.frame.size.width / 2, 44)];
-        self.skillLabel.text = @"hellooooo";
+        self.skillLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 84, 100, 44)];
         [self.skillLabel setTextColor:[UIColor blackColor]];
         [self.skillLabel setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.skillLabel];
@@ -65,6 +65,7 @@
     self = [self initWithFrame:frame];
     
     if (self) {
+        self.isManager = NO;
         self.numberOfSlices = [skillList count];
         self.angleInterval = 2.0 / self.numberOfSlices;
         int i = 0;
@@ -74,13 +75,7 @@
             }
             NSDictionary *skillInfo = skillList[i];
             
-            /* Random Color Generator */
-            CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
-            CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
-            CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
-            UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:0.6];
-            
-            PSRSlice *slice = [[PSRSlice alloc] initWithFields:[skillInfo objectForKey:@"pc_name"] startAngle:angle endAngle:angle + self.angleInterval radius:[[skillInfo objectForKey:@"pc_value"] floatValue] color:color];
+            PSRSlice *slice = [[PSRSlice alloc] initWithFields:[skillInfo objectForKey:@"pc_name"] startAngle:angle endAngle:angle + self.angleInterval radius:[[skillInfo objectForKey:@"pc_value"] floatValue] * _sectionSize  color:[self randomColor]];
             [self.pieSlices addObject:slice];
             i++;
         }
@@ -95,7 +90,24 @@
     self = [self initWithFrame:frame];
     
     if (self) {
+        self.isManager = YES;
+        self.numberOfSlices = [memberList[0] count];
+        self.angleInterval = 2.0 / self.numberOfSlices;
         
+        NSArray *colorList = [self randomColorList:self.numberOfSlices];
+        
+        for (int i = 0; i < [memberList count]; i++) {
+            NSArray *skillList = memberList[i];
+            
+            int j = 0;
+            for (float angle = 0.; angle < 2.0; angle += self.angleInterval) {
+                NSDictionary *skillInfo = skillList[j];
+                PSRSlice *slice = [[PSRSlice alloc] initWithFields:[skillInfo objectForKey:@"pc_name"] startAngle:angle endAngle:angle + self.angleInterval radius:[[skillInfo objectForKey:@"pc_value"] floatValue] * _sectionSize color:colorList[j]];
+                
+                [self.pieSlices addObject:slice];
+                j++;
+            }
+        }
     }
     
     return self;
@@ -129,6 +141,27 @@
     [[UIColor blackColor] setStroke];
     
     [path stroke];
+}
+
+- (NSArray *)randomColorList:(int)number
+{
+    NSMutableArray *colorList = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < number; i++){
+        [colorList addObject:[self randomColor]];
+    }
+    
+    return colorList;
+}
+
+- (UIColor *)randomColor
+{
+    /* Random Color Generator */
+    CGFloat red = arc4random() % 255 / 255.;
+    CGFloat blue = arc4random() % 255 / 255.;
+    CGFloat green = arc4random() % 255 / 255.;
+    UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:0.4];
+    return color;
 }
 
 
@@ -187,23 +220,24 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for (UITouch *t in touches) {
-        CGPoint location = [t locationInView:self];
-        _initialTouch = location;
-        _touchRadius = distance(location);
-        
-        if (_touchRadius <= 170){
-            self.touchedSlice = [self whichSlice:location];
-            [self.skillLabel setText:self.touchedSlice.skillName];
-            if(_touchRadius >= 160){
-                self.touchedSlice.radius = 160;
-            } else {
-                self.touchedSlice.radius = _touchRadius;
+    if (self.isManager == NO) {
+        for (UITouch *t in touches) {
+            CGPoint location = [t locationInView:self];
+            _initialTouch = location;
+            _touchRadius = distance(location);
+            
+            if (_touchRadius <= 170){
+                self.touchedSlice = [self whichSlice:location];
+                [self.skillLabel setText:self.touchedSlice.skillName];
+                if(_touchRadius >= 160){
+                    self.touchedSlice.radius = 160;
+                } else {
+                    self.touchedSlice.radius = _touchRadius;
+                }
             }
+            
         }
-        
     }
-    
 }
 
 // Handler for touches being moved.

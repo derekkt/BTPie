@@ -21,7 +21,7 @@
         _skillName = name;
         _startAngle = start;
         _endAngle = end;
-        _radius = radius;
+        _radius = radius; // convert skillLevel to radius.
         _color = color;
     }
     

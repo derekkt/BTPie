@@ -21,7 +21,7 @@
     
     
     if(userProfile != nil){
-        NSLog(@"testInsideGetUSer: %@", userProfile);
+//        NSLog(@"testInsideGetUSer: %@", userProfile);
         return userProfile;
     } else{
         NSLog(@"No user exists");
@@ -54,8 +54,7 @@
     
     
     if(userProfile != nil){
-        //   if([userProfile isKindOfClass:NS]])
-        NSLog(@"test: %@", userProfile);
+//        NSLog(@"test: %@", userProfile);
         return userProfile;
     } else{
         NSLog(@"No team exists");
@@ -72,7 +71,7 @@
     id userProfile = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
     if(userProfile != nil){
-        NSLog(@"test: %@", userProfile);
+//        NSLog(@"test: %@", userProfile);
         return userProfile;
     } else{
         NSLog(@"No user exists");
