@@ -76,6 +76,7 @@
             NSDictionary *skillInfo = skillList[i];
             
             PSRSlice *slice = [[PSRSlice alloc] initWithFields:[skillInfo objectForKey:@"pc_name"] startAngle:angle endAngle:angle + self.angleInterval radius:[[skillInfo objectForKey:@"pc_value"] floatValue] * _sectionSize  color:[self randomColor]];
+//            PSRSlice *slice = [[PSRSlice alloc] initWithFields:[skillInfo objectForKey:@"pc_name"] startAngle:angle endAngle:angle + self.angleInterval radius:i * _sectionSize  color:[self randomColor]];
             [self.pieSlices addObject:slice];
             i++;
         }
@@ -168,14 +169,25 @@
     return color;
 }
 
+- (NSArray *)getSkillValues{
+    NSMutableArray *skillLevels = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [self.pieSlices count]; i++) {
+        PSRSlice *slice = self.pieSlices[i];
+        [skillLevels addObject:[NSNumber numberWithInt:slice.skillLevel]];
+    }
+    
+    return skillLevels;
+}
+
 
 - (void)fillSlice
 {
     CGPoint center = self.window.center;
     for( PSRSlice *slice in _pieSlices){
         float skillLevel = ceilf(slice.radius / 160 * _numberOfSections);
-        
         float currentRadius = skillLevel * _sectionSize;
+        slice.skillLevel = skillLevel;
+        
 //        NSLog(@"CurrentRadius:%f", currentRadius);
         UIBezierPath *path = [[UIBezierPath alloc] init];
         [path moveToPoint:center];
@@ -187,8 +199,6 @@
         [path fill];
     }
 }
-
-// Fill Group Slices method.
 
 /* Finding the angle of the touch point in radians based on clockwise from 0. */
 - (float)angleInRads:(CGPoint)location
@@ -224,24 +234,25 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (self.isManager == NO) {
-        for (UITouch *t in touches) {
-            CGPoint location = [t locationInView:self];
-            _initialTouch = location;
-            _touchRadius = distance(location);
-            
-            if (_touchRadius <= 170){
-                self.touchedSlice = [self whichSlice:location];
-                [self.skillLabel setText:self.touchedSlice.skillName];
+    for (UITouch *t in touches) {
+        CGPoint location = [t locationInView:self];
+        _initialTouch = location;
+        _touchRadius = distance(location);
+        
+        if (_touchRadius <= 170){
+            self.touchedSlice = [self whichSlice:location];
+            [self.skillLabel setText:self.touchedSlice.skillName];
+            if (self.isManager == NO) {
                 if(_touchRadius >= 160){
                     self.touchedSlice.radius = 160;
                 } else {
                     self.touchedSlice.radius = _touchRadius;
                 }
             }
-            
         }
+        
     }
+
 }
 
 // Handler for touches being moved.

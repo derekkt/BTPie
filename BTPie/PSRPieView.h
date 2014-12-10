@@ -14,5 +14,6 @@
 - (instancetype)initForUser:(CGRect)frame skillList:(NSMutableArray *)skillList;
 - (instancetype)initForManager:(CGRect)frame memberList:(NSArray *)memberList;
 
+- (NSArray *)getSkillValues;
 
 @end

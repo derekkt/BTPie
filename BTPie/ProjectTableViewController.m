@@ -87,9 +87,12 @@
 }
 
 - (IBAction)saveButtonListener:(id)sender {
-    // Use the ["view" pieSlices] method to get an array of slices.
-    // slices.skillName
-    // slices.skillLevel
+    PSRPieView *view = self.view;
+    NSArray *skillValues = [view getSkillValues];
+    
+    for (id i in skillValues){
+        NSLog(@"Values:%@", i);
+    }
     
 }
 
@@ -145,6 +148,7 @@
 //        NSLog(@"%@", person);
         
         _projectStartButton.hidden = YES;
+        _projectAddButton.hidden = YES;
         noProjectsLabel.hidden = YES;
         
         if([[person objectForKey:@"team_leader_id"] isEqual:[person objectForKey:@"user_account_id"]]){
