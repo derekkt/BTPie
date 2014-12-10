@@ -96,17 +96,21 @@
         
         NSArray *colorList = [self randomColorList:self.numberOfSlices];
         
+        int k = 1;
         for (int i = 0; i < [memberList count]; i++) {
             NSArray *skillList = memberList[i];
             
             int j = 0;
             for (float angle = 0.; angle < 2.0; angle += self.angleInterval) {
                 NSDictionary *skillInfo = skillList[j];
-                PSRSlice *slice = [[PSRSlice alloc] initWithFields:[skillInfo objectForKey:@"pc_name"] startAngle:angle endAngle:angle + self.angleInterval radius:[[skillInfo objectForKey:@"pc_value"] floatValue] * _sectionSize color:colorList[j]];
+//                PSRSlice *slice = [[PSRSlice alloc] initWithFields:[skillInfo objectForKey:@"pc_name"] startAngle:angle endAngle:angle + self.angleInterval radius:[[skillInfo objectForKey:@"pc_value"] floatValue] * _sectionSize color:colorList[j]];
+                
+                PSRSlice *slice = [[PSRSlice alloc] initWithFields:[skillInfo objectForKey:@"pc_name"] startAngle:angle endAngle:angle + self.angleInterval radius:k * _sectionSize color:colorList[j]];
                 
                 [self.pieSlices addObject:slice];
                 j++;
             }
+            k++;
         }
     }
     
