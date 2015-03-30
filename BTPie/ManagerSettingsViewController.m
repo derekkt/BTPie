@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@",manager);
+    NSLog(@"MANAGER!!!%@",manager);
     teamPie = [ServiceConnector getTeamPie:[manager objectForKey:@"team_id"]];
     if([teamPie count]!=0){
         keys = [teamPie allKeys];
@@ -101,9 +101,6 @@
             [alertView show];
             
         }else{
-            
-            
-            
             memberKey = [keys objectAtIndex:indexPath.row];
             
             [self performSegueWithIdentifier: @"managerPieSegue" sender: self];
@@ -126,6 +123,8 @@
             
         }
     }
+    
+    
     
 }
 
@@ -216,6 +215,7 @@
         nextVC.pie = [teamPie objectForKey:memberKey];
         //nextVC.group = group;
     }
+    
 }
 
 

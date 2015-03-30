@@ -10,6 +10,8 @@
 
 @interface ManagerPieViewController : UIViewController
 
-@property NSMutableArray* pie;
+@property NSMutableArray *pie;
+@property NSInteger userNumber;
+@property NSArray *userArray;
 
 @end
